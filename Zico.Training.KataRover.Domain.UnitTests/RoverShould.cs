@@ -16,5 +16,20 @@ namespace Zico.Training.KataRover.Domain.UnitTests
             rover.Width.ShouldBe(0);
             rover.CurrentDirection.ShouldBe(Direction.North);
         }
+
+        [TestCase(1, Direction.East)]
+        [TestCase(2, Direction.South)]
+        [TestCase(3, Direction.West)]
+        [TestCase(4, Direction.North)]
+        [TestCase(5, Direction.East)]
+        public void RotateRight(int times, Direction expectedDirection)
+        {
+            var rover = new Rover();
+
+            for (int i = 0; i < times; i++)
+                rover.RotateRight();
+
+            rover.CurrentDirection.ShouldBe(expectedDirection);
+        }
     }
 }
