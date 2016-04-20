@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using NUnit.Framework.Api;
 using Shouldly;
 
 namespace Zico.Training.KataRover.Domain.UnitTests
@@ -7,14 +8,20 @@ namespace Zico.Training.KataRover.Domain.UnitTests
     [TestFixture]
     public class RoverShould
     {
+        private Rover _rover;
+
+        [SetUp]
+        public void BeforeEachTest()
+        {
+            _rover = new Rover();
+        }
+
         [Test]
         public void DefaultPosition()
         {
-            var rover = new Rover();
-
-            rover.Height.ShouldBe(0);
-            rover.Width.ShouldBe(0);
-            rover.CurrentDirection.ShouldBe(Direction.North);
+            _rover.Height.ShouldBe(0);
+            _rover.Width.ShouldBe(0);
+            _rover.CurrentDirection.ShouldBe(Direction.North);
         }
 
         [TestCase(1, Direction.East)]
@@ -24,12 +31,10 @@ namespace Zico.Training.KataRover.Domain.UnitTests
         [TestCase(5, Direction.East)]
         public void RotateRight(int times, Direction expectedDirection)
         {
-            var rover = new Rover();
-
             for (int i = 0; i < times; i++)
-                rover.RotateRight();
+                _rover.RotateRight();
 
-            rover.CurrentDirection.ShouldBe(expectedDirection);
+            _rover.CurrentDirection.ShouldBe(expectedDirection);
         }
 
         [TestCase(1, Direction.West)]
@@ -39,12 +44,29 @@ namespace Zico.Training.KataRover.Domain.UnitTests
         [TestCase(5, Direction.West)]
         public void RotateLeft(int times, Direction expectedDirection)
         {
-            var rover = new Rover();
-
             for (int i = 0; i < times; i++)
-                rover.RotateLeft();
+                _rover.RotateLeft();
 
-            rover.CurrentDirection.ShouldBe(expectedDirection);
+            _rover.CurrentDirection.ShouldBe(expectedDirection);
+        }
+
+        [TestCase(1)]
+        [TestCase(9)]
+        public void IncreaseHeightWhenMovingTowardsNorth(int times)
+        {
+            for (int i = 0; i < times; i++)
+                _rover.MoveForward();
+
+            _rover.Height.ShouldBe(times);
+        }
+
+        [Test]
+        public void ResetHeightWhenMovingTowardsNorthAndOutOfBoundaries()
+        {
+            for (int i = 0; i < 10; i++)
+                _rover.MoveForward();
+
+            _rover.Height.ShouldBe(0);
         }
     }
 }
