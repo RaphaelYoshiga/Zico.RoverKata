@@ -8,12 +8,39 @@ namespace Zico.Training.KataRover.Domain
 {
     public class Rover
     {
+
         public const int MaxIndex = 9;
         public const int MinIndex = 0;
+        private int _x;
+        private int _y;
 
         public Direction CurrentDirection { get; private set; }
-        public int Y { get; private set; }
-        public int X { get; private set; }
+
+        public int Y
+        {
+            get { return _y; }
+            private set { _y = EnsureIndexIsInBoundaries(value); }
+        }
+
+        public int X
+        {
+            get { return _x; }
+            private set
+            {
+                _x = EnsureIndexIsInBoundaries(value);
+            }
+        }
+
+        private int EnsureIndexIsInBoundaries(int newIndex)
+        {
+            if (newIndex < MinIndex)
+                return MaxIndex;
+
+            if (newIndex > MaxIndex)
+                return MinIndex;
+
+            return newIndex;
+        }
 
         public void RotateRight()
         {
@@ -27,37 +54,21 @@ namespace Zico.Training.KataRover.Domain
 
         public void MoveForward()
         {
-            if (CurrentDirection == Direction.South)
-                MoveTowardsSouth();
-            else if (CurrentDirection == Direction.North)
-                MoveTowardsNorth();
-            else if (CurrentDirection == Direction.East)
-                MoveTowardsEast();
-            else
-                MoveTowardsWest();
-        }
-
-        private void MoveTowardsWest()
-        {
-            if (X == MinIndex)
-                X = MaxIndex;
-            else
-                X--;
-        }
-
-        private void MoveTowardsEast()
-        {
-            X = X == MaxIndex ? MinIndex : ++X;
-        }
-
-        private void MoveTowardsSouth()
-        {
-            Y = Y == MinIndex ? MaxIndex : --Y;
-        }
-
-        private void MoveTowardsNorth()
-        {
-            Y = Y == MaxIndex ? MinIndex : ++Y;
+            switch (CurrentDirection)
+            {
+                case Direction.South:
+                    Y--;
+                    break;
+                case Direction.North:
+                    Y++;
+                    break;
+                case Direction.East:
+                    X++;
+                    break;
+                default:
+                    X--;
+                    break;
+            }
         }
     }
 }
