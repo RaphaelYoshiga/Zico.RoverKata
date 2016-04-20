@@ -54,19 +54,47 @@ namespace Zico.Training.KataRover.Domain.UnitTests
         [TestCase(9)]
         public void IncreaseHeightWhenMovingTowardsNorth(int times)
         {
-            for (int i = 0; i < times; i++)
-                _rover.MoveForward();
+            MoveForwardNTimes(times);
 
             _rover.Height.ShouldBe(times);
+        }
+
+        private void MoveForwardNTimes(int times)
+        {
+            for (int i = 0; i < times; i++)
+                _rover.MoveForward();
         }
 
         [Test]
         public void ResetHeightWhenMovingTowardsNorthAndOutOfBoundaries()
         {
-            for (int i = 0; i < 10; i++)
-                _rover.MoveForward();
+            MoveForwardNTimes(10);
 
             _rover.Height.ShouldBe(0);
+        }
+
+        [Test]
+        public void ResetHeightWhenMovingTowardsSouthAndOutOfBoundaries()
+        {
+            _rover.RotateRight();
+            _rover.RotateRight();
+
+            _rover.MoveForward();
+
+            _rover.Height.ShouldBe(Rover.MaxHeightIndex);
+        }
+
+        [TestCase(1, Rover.MaxHeightIndex)]
+        [TestCase(5, Rover.MaxHeightIndex - 4)]
+
+        public void DecreaseHeightWhenMovingTowardsSouth(int times, int expectedHeight)
+        {
+            _rover.RotateRight();
+            _rover.RotateRight();
+
+            MoveForwardNTimes(times);
+
+            _rover.Height.ShouldBe(expectedHeight);
         }
     }
 }
