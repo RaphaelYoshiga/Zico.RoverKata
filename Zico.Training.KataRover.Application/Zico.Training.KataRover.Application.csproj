@@ -40,8 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IRoverCommander.cs" />
     <Compile Include="RoverCommander.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoverFormatter.cs" />
+    <Compile Include="RoverOrchestrator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Zico.Training.KataRover.Domain\Zico.Training.KataRover.Domain.csproj">
