@@ -27,7 +27,7 @@ namespace Zico.Training.KataRover.Application.UnitTests
         [TestCase(Direction.East, 'E')]
         [TestCase(Direction.South, 'S')]
         [TestCase(Direction.West, 'W')]
-        public void FormatAll(Direction direction, char expectedDirection)
+        public void FormatProperties(Direction direction, char expectedDirection)
         {
             var random = new Random();
             int y = random.Next(0, 9);
