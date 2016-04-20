@@ -81,11 +81,11 @@ namespace Zico.Training.KataRover.Domain.UnitTests
 
             _rover.MoveForward();
 
-            _rover.Height.ShouldBe(Rover.MaxHeightIndex);
+            _rover.Height.ShouldBe(Rover.MaxIndex);
         }
 
-        [TestCase(1, Rover.MaxHeightIndex)]
-        [TestCase(5, Rover.MaxHeightIndex - 4)]
+        [TestCase(1, Rover.MaxIndex)]
+        [TestCase(5, Rover.MaxIndex - 4)]
 
         public void DecreaseHeightWhenMovingTowardsSouth(int times, int expectedHeight)
         {

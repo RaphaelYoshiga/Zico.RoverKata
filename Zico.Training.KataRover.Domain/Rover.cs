@@ -8,25 +8,21 @@ namespace Zico.Training.KataRover.Domain
 {
     public class Rover
     {
-        public const int MaxHeightIndex = 9;
+        public const int MaxIndex = 9;
+        public const int MinIndex = 0;
+
         public Direction CurrentDirection { get; private set; }
         public int Height { get; private set; }
         public int Width { get; private set; }
 
         public void RotateRight()
         {
-            if (CurrentDirection == Direction.West)
-                CurrentDirection = Direction.North;
-            else
-                CurrentDirection++;
+            CurrentDirection = CurrentDirection == Direction.West ? Direction.North : ++CurrentDirection;
         }
 
         public void RotateLeft()
         {
-            if (CurrentDirection == Direction.North)
-                CurrentDirection = Direction.West;
-            else
-                CurrentDirection--;
+            CurrentDirection = CurrentDirection == Direction.North ? Direction.West : --CurrentDirection;
         }
 
         public void MoveForward()
@@ -39,12 +35,12 @@ namespace Zico.Training.KataRover.Domain
 
         private void MoveTowardsSouth()
         {
-            Height = Height == 0 ? MaxHeightIndex : Height - 1;
+            Height = Height == MinIndex ? MaxIndex : --Height;
         }
 
         private void MoveTowardsNorth()
         {
-            Height = Height == MaxHeightIndex ? 0 : Height + 1;
+            Height = Height == MaxIndex ? MinIndex : ++Height;
         }
     }
 }
