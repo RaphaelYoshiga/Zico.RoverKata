@@ -24,7 +24,8 @@ namespace Zico.Training.KataRover.Application
         {
             var rover = _roverFactory.Instanciate();
             _roverCommander.Execute(commands, rover);
-            return _formatter.Format(rover);
+            var format = _formatter.Format(rover);
+            return format;
         }
     }
 }

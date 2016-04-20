@@ -60,5 +60,21 @@ namespace Zico.Training.KataRover.Application.UnitTests
 
             actualOutput.ShouldBe(expectedOutput);
         }
+
+        [Test]
+        public void CallFormatterAfterCommander()
+        {
+            int unexpectedCallOrder = 1;
+            int expectedCallOrder = 2;
+            int callOrder = 0;
+            _roverCommanderMock.Setup(p => p.Execute(It.IsAny<string>(), It.IsAny<IRover>()))
+                .Callback(() => callOrder = unexpectedCallOrder);
+            _roverFormatterMock.Setup(p => p.Format(It.IsAny<IRover>()))
+                .Callback(() => callOrder = expectedCallOrder);
+
+            string actualOutput = _roverOrchestrator.Execute(string.Empty);
+
+            callOrder.ShouldBe(expectedCallOrder);
+        }
     }
 }
