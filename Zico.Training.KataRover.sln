@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zico.Training.KataRover.Dom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zico.Training.KataRover.Domain.UnitTests", "Zico.Training.KataRover.Domain.UnitTests\Zico.Training.KataRover.Domain.UnitTests.csproj", "{37A58E04-C34A-4817-A029-D366BEEE8586}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zico.Training.KataRover.Application", "Zico.Training.KataRover.Application\Zico.Training.KataRover.Application.csproj", "{6116ED00-56CB-4463-B547-E5C2DEED6209}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zico.Training.KataRover.Application.UnitTests", "Zico.Training.KataRover.Application.UnitTests\Zico.Training.KataRover.Application.UnitTests.csproj", "{28FA9820-73DF-4D87-BF2F-2540A343975A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{37A58E04-C34A-4817-A029-D366BEEE8586}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37A58E04-C34A-4817-A029-D366BEEE8586}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37A58E04-C34A-4817-A029-D366BEEE8586}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6116ED00-56CB-4463-B547-E5C2DEED6209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6116ED00-56CB-4463-B547-E5C2DEED6209}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6116ED00-56CB-4463-B547-E5C2DEED6209}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6116ED00-56CB-4463-B547-E5C2DEED6209}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28FA9820-73DF-4D87-BF2F-2540A343975A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28FA9820-73DF-4D87-BF2F-2540A343975A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28FA9820-73DF-4D87-BF2F-2540A343975A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28FA9820-73DF-4D87-BF2F-2540A343975A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

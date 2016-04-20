@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{959DE7CB-D75E-4949-B4D6-83B6647C6B57}</ProjectGuid>
+    <ProjectGuid>{6116ED00-56CB-4463-B547-E5C2DEED6209}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Zico.Training.KataRover.Domain</RootNamespace>
-    <AssemblyName>Zico.Training.KataRover.Domain</AssemblyName>
+    <RootNamespace>Zico.Training.KataRover.Application</RootNamespace>
+    <AssemblyName>Zico.Training.KataRover.Application</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,14 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=3.2.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.2.1\lib\net45\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Shouldly, Version=2.7.0.0, Culture=neutral, PublicKeyToken=6042cbcb05cbc941, processorArchitecture=MSIL">
-      <HintPath>..\packages\Shouldly.2.7.0\lib\net40\Shouldly.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,14 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Direction.cs" />
-    <Compile Include="IRover.cs" />
-    <Compile Include="Rover.cs" />
+    <Compile Include="RoverCommander.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IRoverFactory.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\Zico.Training.KataRover.Domain\Zico.Training.KataRover.Domain.csproj">
+      <Project>{959DE7CB-D75E-4949-B4D6-83B6647C6B57}</Project>
+      <Name>Zico.Training.KataRover.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

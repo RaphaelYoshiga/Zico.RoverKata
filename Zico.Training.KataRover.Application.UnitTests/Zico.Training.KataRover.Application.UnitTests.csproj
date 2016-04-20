@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{37A58E04-C34A-4817-A029-D366BEEE8586}</ProjectGuid>
+    <ProjectGuid>{28FA9820-73DF-4D87-BF2F-2540A343975A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Zico.Training.KataRover.Domain.UnitTests</RootNamespace>
-    <AssemblyName>Zico.Training.KataRover.Domain.UnitTests</AssemblyName>
+    <RootNamespace>Zico.Training.KataRover.Application.UnitTests</RootNamespace>
+    <AssemblyName>Zico.Training.KataRover.Application.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,12 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=3.2.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.2.1\lib\net45\nunit.framework.dll</HintPath>
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Shouldly, Version=2.7.0.0, Culture=neutral, PublicKeyToken=6042cbcb05cbc941, processorArchitecture=MSIL">
-      <HintPath>..\packages\Shouldly.2.7.0\lib\net40\Shouldly.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.2.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.2.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -54,17 +54,21 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="RoverShould.cs" />
+    <Compile Include="RoverCommanderShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Zico.Training.KataRover.Domain\Zico.Training.KataRover.Domain.csproj">
-      <Project>{959de7cb-d75e-4949-b4d6-83b6647c6b57}</Project>
-      <Name>Zico.Training.KataRover.Domain</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\Zico.Training.KataRover.Application\Zico.Training.KataRover.Application.csproj">
+      <Project>{6116ED00-56CB-4463-B547-E5C2DEED6209}</Project>
+      <Name>Zico.Training.KataRover.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zico.Training.KataRover.Domain\Zico.Training.KataRover.Domain.csproj">
+      <Project>{959DE7CB-D75E-4949-B4D6-83B6647C6B57}</Project>
+      <Name>Zico.Training.KataRover.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Zico.Training.KataRover.Domain
 {
-    public class Rover
+    public class Rover : IRover
     {
-
         public const int MaxIndex = 9;
         public const int MinIndex = 0;
         private int _x;
