@@ -12,8 +12,8 @@ namespace Zico.Training.KataRover.Domain
         public const int MinIndex = 0;
 
         public Direction CurrentDirection { get; private set; }
-        public int Height { get; private set; }
-        public int Width { get; private set; }
+        public int Y { get; private set; }
+        public int X { get; private set; }
 
         public void RotateRight()
         {
@@ -29,18 +29,35 @@ namespace Zico.Training.KataRover.Domain
         {
             if (CurrentDirection == Direction.South)
                 MoveTowardsSouth();
-            else
+            else if (CurrentDirection == Direction.North)
                 MoveTowardsNorth();
+            else if (CurrentDirection == Direction.East)
+                MoveTowardsEast();
+            else
+                MoveTowardsWest();
+        }
+
+        private void MoveTowardsWest()
+        {
+            if (X == MinIndex)
+                X = MaxIndex;
+            else
+                X--;
+        }
+
+        private void MoveTowardsEast()
+        {
+            X = X == MaxIndex ? MinIndex : ++X;
         }
 
         private void MoveTowardsSouth()
         {
-            Height = Height == MinIndex ? MaxIndex : --Height;
+            Y = Y == MinIndex ? MaxIndex : --Y;
         }
 
         private void MoveTowardsNorth()
         {
-            Height = Height == MaxIndex ? MinIndex : ++Height;
+            Y = Y == MaxIndex ? MinIndex : ++Y;
         }
     }
 }

@@ -19,8 +19,8 @@ namespace Zico.Training.KataRover.Domain.UnitTests
         [Test]
         public void DefaultPosition()
         {
-            _rover.Height.ShouldBe(0);
-            _rover.Width.ShouldBe(0);
+            _rover.Y.ShouldBe(0);
+            _rover.X.ShouldBe(0);
             _rover.CurrentDirection.ShouldBe(Direction.North);
         }
 
@@ -52,11 +52,27 @@ namespace Zico.Training.KataRover.Domain.UnitTests
 
         [TestCase(1)]
         [TestCase(9)]
-        public void IncreaseHeightWhenMovingTowardsNorth(int times)
+        public void IncreaseYAxisWhenMovingTowardsNorth(int times)
         {
             MoveForwardNTimes(times);
 
-            _rover.Height.ShouldBe(times);
+            _rover.Y.ShouldBe(times);
+        }
+
+        [Test]
+        public void DoNotChangeXAxisWhenMovingTowardsNorth()
+        {
+            MoveForwardNTimes(10);
+
+            _rover.X.ShouldBe(0);
+        }
+
+        [Test]
+        public void ResetYAxisWhenMovingTowardsNorthAndOutOfBoundaries()
+        {
+            MoveForwardNTimes(10);
+
+            _rover.Y.ShouldBe(0);
         }
 
         private void MoveForwardNTimes(int times)
@@ -66,35 +82,81 @@ namespace Zico.Training.KataRover.Domain.UnitTests
         }
 
         [Test]
-        public void ResetHeightWhenMovingTowardsNorthAndOutOfBoundaries()
-        {
-            MoveForwardNTimes(10);
-
-            _rover.Height.ShouldBe(0);
-        }
-
-        [Test]
-        public void ResetHeightWhenMovingTowardsSouthAndOutOfBoundaries()
+        public void ResetYAxisWhenMovingTowardsSouthAndOutOfBoundaries()
         {
             _rover.RotateRight();
             _rover.RotateRight();
 
             _rover.MoveForward();
 
-            _rover.Height.ShouldBe(Rover.MaxIndex);
+            _rover.Y.ShouldBe(Rover.MaxIndex);
         }
 
         [TestCase(1, Rover.MaxIndex)]
         [TestCase(5, Rover.MaxIndex - 4)]
+        [TestCase(9, Rover.MaxIndex - 8)]
 
-        public void DecreaseHeightWhenMovingTowardsSouth(int times, int expectedHeight)
+        public void DecreaseYAxisWhenMovingTowardsSouth(int times, int expectedY)
         {
             _rover.RotateRight();
             _rover.RotateRight();
 
             MoveForwardNTimes(times);
 
-            _rover.Height.ShouldBe(expectedHeight);
+            _rover.Y.ShouldBe(expectedY);
+        }
+
+        [TestCase(1)]
+        [TestCase(9)]
+        public void IncreaseXAxisWhenMovingTowardsEast(int times)
+        {
+            _rover.RotateRight();
+
+            MoveForwardNTimes(times);
+
+            _rover.X.ShouldBe(times);
+        }
+
+        [Test]
+        public void DoNotChangeYAxisWhenMovingEast()
+        {
+            _rover.RotateRight();
+
+            MoveForwardNTimes(10);
+
+            _rover.Y.ShouldBe(0);
+        }
+
+        [Test]
+        public void ResetXAxisWhenMovingEastAndOutOfBoundaries()
+        {
+            _rover.RotateRight();
+
+            MoveForwardNTimes(10);
+
+            _rover.X.ShouldBe(0);
+        }
+
+
+        [Test]
+        public void ResetXAxisWhenMovingWestAndOutOfBoundaries()
+        {
+            _rover.RotateLeft();
+
+            _rover.MoveForward();
+
+            _rover.X.ShouldBe(Rover.MaxIndex);
+        }
+
+        [TestCase(5, Rover.MaxIndex - 4)]
+        [TestCase(9, Rover.MaxIndex - 8)]
+        public void DecreaseXAxisWhenMovingTowardsWest(int times, int expectedX)
+        {
+            _rover.RotateLeft();
+
+            MoveForwardNTimes(times);
+
+            _rover.X.ShouldBe(expectedX);
         }
     }
 }
