@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
+using Shouldly;
 using Zico.Training.KataRover.Domain;
 
 namespace Zico.Training.KataRover.Application.UnitTests
@@ -16,6 +17,7 @@ namespace Zico.Training.KataRover.Application.UnitTests
         private RoverOrchestrator _roverOrchestrator;
         private Mock<IRover> _roverMock;
         private Mock<IRoverCommander> _roverCommanderMock;
+        private Mock<IRoverFormatter> _roverFormatterMock;
 
         [SetUp]
         public void BeforeEachTest()
@@ -26,7 +28,8 @@ namespace Zico.Training.KataRover.Application.UnitTests
                 .Returns(_roverMock.Object);
             _roverCommanderMock = new Mock<IRoverCommander>();
 
-            _roverOrchestrator = new RoverOrchestrator(_roverFactory.Object, _roverCommanderMock.Object);
+            _roverFormatterMock = new Mock<IRoverFormatter>();
+            _roverOrchestrator = new RoverOrchestrator(_roverFactory.Object, _roverCommanderMock.Object, _roverFormatterMock.Object);
         }
 
         [Test]
@@ -45,6 +48,17 @@ namespace Zico.Training.KataRover.Application.UnitTests
             _roverOrchestrator.Execute(commands);
 
             _roverCommanderMock.Verify(p => p.Execute(commands, _roverMock.Object), Times.Once);
+        }
+
+        [Test]
+        public void ReturnRoverFormatterResult()
+        {
+            string expectedOutput = Guid.NewGuid().ToString();
+            _roverFormatterMock.Setup(p => p.Format(_roverMock.Object)).Returns(expectedOutput);
+
+            string actualOutput = _roverOrchestrator.Execute(string.Empty);
+
+            actualOutput.ShouldBe(expectedOutput);
         }
     }
 }
