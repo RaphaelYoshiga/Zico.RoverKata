@@ -19,5 +19,13 @@ namespace Zico.Training.KataRover.Domain
             else
                 CurrentDirection++;
         }
+
+        public void RotateLeft()
+        {
+            if (CurrentDirection == Direction.North)
+                CurrentDirection = Direction.West;
+            else
+                CurrentDirection--;
+        }
     }
 }
