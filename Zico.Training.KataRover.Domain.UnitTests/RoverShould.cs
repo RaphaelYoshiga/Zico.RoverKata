@@ -120,9 +120,10 @@ namespace Zico.Training.KataRover.Domain.UnitTests
         [Test]
         public void DoNotChangeYAxisWhenMovingEast()
         {
+            int times = new Random().Next(1, 1000);
             _rover.RotateRight();
 
-            MoveForwardNTimes(10);
+            MoveForwardNTimes(times);
 
             _rover.Y.ShouldBe(0);
         }
@@ -157,6 +158,24 @@ namespace Zico.Training.KataRover.Domain.UnitTests
             MoveForwardNTimes(times);
 
             _rover.X.ShouldBe(expectedX);
+        }
+
+        [Test]
+        public void DoACircle()
+        {
+            int numberOfForwardMoves = new Random().Next(Rover.MinIndex, Rover.MaxIndex);
+            for (int i = 0; i < 4; i++)
+                MoveAndRotateRight(numberOfForwardMoves);
+
+            DefaultPosition();
+        }
+
+        private void MoveAndRotateRight(int numberOfForwardMoves)
+        {
+            for (int i = 0; i < numberOfForwardMoves; i++)
+                _rover.MoveForward();
+            
+            _rover.RotateRight();
         }
     }
 }
