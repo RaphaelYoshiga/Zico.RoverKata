@@ -57,13 +57,6 @@ namespace Zico.Training.KataRover.Domain.UnitTests
             MoveForwardNTimes(times);
 
             _rover.Y.ShouldBe(times);
-        }
-
-        [Test]
-        public void DoNotChangeXAxisWhenMovingTowardsNorth()
-        {
-            MoveForwardNTimes(10);
-
             _rover.X.ShouldBe(0);
         }
 
@@ -104,6 +97,7 @@ namespace Zico.Training.KataRover.Domain.UnitTests
             MoveForwardNTimes(times);
 
             _rover.Y.ShouldBe(expectedY);
+            _rover.X.ShouldBe(0);
         }
 
         [TestCase(1)]
@@ -115,16 +109,6 @@ namespace Zico.Training.KataRover.Domain.UnitTests
             MoveForwardNTimes(times);
 
             _rover.X.ShouldBe(times);
-        }
-
-        [Test]
-        public void DoNotChangeYAxisWhenMovingEast()
-        {
-            int times = new Random().Next(1, 1000);
-            _rover.RotateRight();
-
-            MoveForwardNTimes(times);
-
             _rover.Y.ShouldBe(0);
         }
 
@@ -158,6 +142,7 @@ namespace Zico.Training.KataRover.Domain.UnitTests
             MoveForwardNTimes(times);
 
             _rover.X.ShouldBe(expectedX);
+            _rover.Y.ShouldBe(0);
         }
 
         [Test]
