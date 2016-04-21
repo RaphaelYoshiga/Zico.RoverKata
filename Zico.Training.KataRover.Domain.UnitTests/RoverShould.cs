@@ -144,23 +144,5 @@ namespace Zico.Training.KataRover.Domain.UnitTests
             _rover.X.ShouldBe(expectedX);
             _rover.Y.ShouldBe(0);
         }
-
-        [Test]
-        public void DoACircle()
-        {
-            int numberOfForwardMoves = new Random().Next(Rover.MinIndex, Rover.MaxIndex);
-            for (int i = 0; i < 4; i++)
-                MoveAndRotateRight(numberOfForwardMoves);
-
-            DefaultPosition();
-        }
-
-        private void MoveAndRotateRight(int numberOfForwardMoves)
-        {
-            for (int i = 0; i < numberOfForwardMoves; i++)
-                _rover.MoveForward();
-            
-            _rover.RotateRight();
-        }
     }
 }
